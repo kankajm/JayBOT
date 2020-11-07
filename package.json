@@ -1,0 +1,21 @@
+{
+  "name": "jaybot",
+  "version": "1.1.0",
+  "description": "Twitch bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [
+    "bot"
+  ],
+  "author": "Jaroslav Kaňka",
+  "license": "MIT",
+  "dependencies": {
+    "tmi.js": "^1.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.6",
+    "prettier": "2.1.2"
+  }
+}
