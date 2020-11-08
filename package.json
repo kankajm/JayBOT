@@ -1,10 +1,10 @@
 {
   "name": "jaybot",
-  "version": "1.1.0",
+  "version": "1.3.0",
   "description": "Twitch bot",
   "main": "index.js",
   "scripts": {
-    "botrun": "tsc index --resolveJsonModule && node index.js"
+    "botrun": "tsc index && tsc jokes && node index.js"
   },
   "keywords": [
     "bot"

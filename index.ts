@@ -3,11 +3,11 @@ Written by Jaroslav Kaňka 2020.11
 */
 
 const tmi = require("tmi.js");
-// When compiling from TS to JS use --resolveJsonModule
-import { usernameC, passwordC, bot_version } from "./config.json";
+const { usernameC, passwordC, bot_version } = require("./config.json")
+const jokes_array: string[] = require("./jokes.js");
 
 // Config for login variables (I used var bcs I want it global)
-var config = {
+let config = {
   identity: {
     username: usernameC,
     password: passwordC,
@@ -26,7 +26,7 @@ try {
   console.log("Bot did not start because: " + error);
 }
 
-// Detects a command and responds on it.   `
+// Detects a command and responds on it.
 client.on("message", (channel, context, message, self) => {
   let reward_id: string = context["custom-reward-id"];
   let sender_name: string = context["display-name"];
@@ -70,7 +70,7 @@ client.on("message", (channel, context, message, self) => {
       let requested_user_is_mod: boolean = channel_moderators.includes(
         message_in_reward
       );
-      if (requested_user_is_mod == true) {
+      if (requested_user_is_mod) {
         client.say(
           channel,
           `${at_sender_name}, Moderátorům nelze udělit VIP. Zažádej si o refund.`
@@ -99,7 +99,7 @@ client.on("message", (channel, context, message, self) => {
       let requested_user_is_mod: boolean = channel_moderators.includes(
         message_in_reward
       );
-      if (requested_user_is_mod == true) {
+      if (requested_user_is_mod) {
         client.say(
           channel,
           "Moderátoři nejdou timeoutovat! Ale ty jo PepeLaugh"
@@ -117,11 +117,17 @@ client.on("message", (channel, context, message, self) => {
     }
   }
 
+  // Misc commands
+  if (message == "!haha" || message == "!vtip") {
+    const random_joke = Math.floor(Math.random() * jokes_array.length);
+    client.say(channel, `${at_sender_name}, ${jokes_array[random_joke]}`)
+  }
+
   // Commands for debugging.
   let admin_users: string[] = ["c0alman", "jayjake"];
 
   // Version debug + avaibility check (Bot admins only)
-  if (admin_users.includes(sender_name) == true) {
+  if (admin_users.includes(sender_name)) {
     if (message == "!bot debug") {
       client.say(
         channel,
