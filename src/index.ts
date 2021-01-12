@@ -183,7 +183,7 @@ client.on("message", async (channel: any, context: any, message: any, self: any)
   // Misc commands (Jokes)
   if (message == "!haha" || message == "!vtip") {
     const random_joke = Math.floor(Math.random() * jokes_array.length);
-    client.say(channel, `${at_sender_name}, ${jokes_array[random_joke]}`)
+    client.say(channel, `${at_sender_name}, ${jokes_array[random_joke]}`);
   }
   // Viewer can check how many and who is connected to a community Minecraft server.
   if (message == "!mc hraci") {
