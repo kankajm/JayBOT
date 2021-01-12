@@ -1,0 +1,28 @@
+{
+    "badge-info": {
+        "subscriber": "4"
+    },
+    "badges": {
+        "moderator": "1",
+        "subscriber": "3",
+        "bits": "100"
+    },
+    "client-nonce": "b7967023e2376014732b28dd593ff6e9",
+    "color": "#008000",
+    "display-name": "c0alman",
+    "emotes": null,
+    "flags": null,
+    "id": "eb365934-c41a-4b87-a2a3-04a3ddee9ad9",
+    "mod": true,
+    "room-id": "108324926",
+    "subscriber": true,
+    "tmi-sent-ts": "1610399292031",
+    "turbo": false,
+    "user-id": "61479843",
+    "user-type": "mod",
+    "emotes-raw": null,
+    "badge-info-raw": "subscriber/4",
+    "badges-raw": "moderator/1,subscriber/3,bits/100",
+    "username": "c0alman",
+    "message-type": "chat"
+}

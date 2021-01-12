@@ -1,7 +1,11 @@
-let jokes: string[] = [
-	'Policajt zastaví podnapilého řidiče: "Jste ochotný podrobit se zkoušce na alkohol?" "Jasně a v jaký hospodě?',
-	'Jeli 3 tanky a 1 netankoval',
-	'Hitler: „Dnes jsem snídal nad válečnou mapou, a neuvěříte, co se stalo... Podrobil jsem si Československo!',
+"use strict";
+/*
+Written by Jaroslav Kaňka <kanka@kankaj.cz>
+*/
+let jokes = [
+    'Policajt zastaví podnapilého řidiče: "Jste ochotný podrobit se zkoušce na alkohol?" "Jasně a v jaký hospodě?',
+    'Jeli 3 tanky a 1 netankoval',
+    'Hitler: „Dnes jsem snídal nad válečnou mapou, a neuvěříte, co se stalo... Podrobil jsem si Československo!',
     '„Máš něco k pití?“ „Vodu.“ „A něco tvrdšího?“ „Led.“',
     'Jak to udělat, aby se vlk nažral a koza zůstala celá? Předhodit mu ovci.',
     'Doktor mi dával půl roku života. Tak jsem ho zabil a dostal jsem 8 let.',
@@ -59,6 +63,4 @@ let jokes: string[] = [
     'Jakou výhodu má zdrsněný povrch kondomů? Ani při vyšších rychlostech nemůžeme dostat smyk.',
     'Přenáší AIDS i hmyz? Ne, jen ptáci.'
 ];
-
-
 module.exports = jokes;

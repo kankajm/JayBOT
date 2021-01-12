@@ -1,5 +1,8 @@
 {
     "usernameC": "",
     "passwordC": "",
-    "bot_version": "1.3"
+    "bot_version": "1.4",
+    "rconIP": "",
+    "rconPort": 25567,
+    "rconPassword": ""
 }
