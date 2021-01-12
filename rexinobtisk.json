@@ -1,0 +1,27 @@
+{
+    "badge-info": {
+        "founder": "8"
+    },
+    "badges": {
+        "vip": "1",
+        "founder": "0"
+    },
+    "client-nonce": "914dfce32871d31887715400c8c47ad4",
+    "color": "#8A2BE2",
+    "display-name": "Rexincze",
+    "emotes": null,
+    "flags": null,
+    "id": "c0bf6082-9922-4d30-a722-163ae417407e",
+    "mod": false,
+    "room-id": "108324926",
+    "subscriber": false,
+    "tmi-sent-ts": "1610454152216",
+    "turbo": false,
+    "user-id": "451638576",
+    "user-type": null,
+    "emotes-raw": null,
+    "badge-info-raw": "founder/8",
+    "badges-raw": "vip/1,founder/0",
+    "username": "rexincze",
+    "message-type": "chat"
+}

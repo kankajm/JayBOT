@@ -58,8 +58,46 @@ client.on("message", async (channel: any, context: any, message: any, self: any)
   let sender_name: string = context["display-name"];
   let at_sender_name: string = "@" + context["display-name"];
   let message_in_reward: string = message;
+  let has_badges: boolean = context["badges"] !== null ? true : false;
   let is_subscribed: boolean = context["subscriber"];
   let is_moderator: boolean = context["mod"];
+  let is_vip: boolean;
+  let is_founder: boolean;
+
+  // Checks if user has badges and then resolves is_vip and is_founder
+  switch(has_badges) {
+    case true: {
+      is_vip = context["badges"].vip == "1" ? true : false;
+      is_founder = context["badges"].founder == "0" ? true : false;
+      break;
+    }
+    case false: {
+      is_vip = false;
+      is_founder = false;
+      break;
+    }
+  };
+
+  // If user is not a subscriber (+founder), VIP or Moderator it removes him from the Minecraft server whitelist.
+  if (is_moderator == false && is_vip == false) {
+    if (is_subscribed == false) {
+      if (is_founder == false) {
+        const checkIfWhitelisted = await prisma.mcName.findMany({
+          where: {
+            twitchNickname: sender_name
+          }
+        });
+        if (checkIfWhitelisted[0]) {
+          rcon.send(`ban ${checkIfWhitelisted[0].mcNickname} Byl jsi odebrán z whitelistu.`);
+          const removeUserFromDB = await prisma.mcName.deleteMany({
+            where: {
+              twitchNickname: sender_name
+            }
+          });
+        };
+      };
+    };
+  };
 
   // Rewards for channel points.
   switch (reward_id) {
@@ -159,12 +197,13 @@ client.on("message", async (channel: any, context: any, message: any, self: any)
         twitchNickname: sender_name,
       }
     });
-    if (!is_subscribed) {
+    if (!is_subscribed && !is_moderator && !is_vip && !is_founder) {
       client.say(channel, `@${sender_name}, Na server se můžou připojit pouze diváci kterí mají zde na streamu subscribe. Subscribe můžete zakoupit zde: https://www.twitch.tv/subs/jayjake Okayge`);
     } else if (findIfWhitelisted[0] != null) {
       const usedMcNick: string = JSON.stringify(findIfWhitelisted[0].mcNickname).replace(/\"/g,'');
       client.say(channel, `@${sender_name}, Už jsi zaregistrován na Whitelistu pod jménem: ${usedMcNick}. Pokud se chceš odebrat z Whitelistu použij příkaz !whitelist unregister`);
     } else {
+      await rcon.send(`pardon ${mcNick}`);
       client.say(channel, `${await rcon.send(`whitelist add ${mcNick}`)}`);
       const newWhitelistAdd = await prisma.mcName.create({
         data: {
@@ -189,11 +228,12 @@ client.on("message", async (channel: any, context: any, message: any, self: any)
           twitchNickname: sender_name
         }
       });
+      await rcon.send(`ban ${findMcNickname[0].mcNickname} Byl jsi odebrán z Whitelistu.`);
       client.say(channel, `@${sender_name}, byl jsi úspěšně odebrán z whitelistu pod nickem ${findMcNickname[0].mcNickname}. peepoSad`);
-    }
-  }
+    };
+  };
   // Commands for debugging.
-  let admin_users: string[] = ["c0alman", "JayJake"];
+  let admin_users: string[] = ["c0alman", "JayJake", "raddebugujuuwu"];
 
   // Version debug + avaibility check (Bot admins only)
   if (admin_users.includes(sender_name)) {
