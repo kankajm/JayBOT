@@ -193,7 +193,7 @@ client.on("message", async (channel: any, context: any, message: any, self: any)
     }
   }
   // Commands for debugging.
-  let admin_users: string[] = ["c0alman", "jayjake"];
+  let admin_users: string[] = ["c0alman", "JayJake"];
 
   // Version debug + avaibility check (Bot admins only)
   if (admin_users.includes(sender_name)) {

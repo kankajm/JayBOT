@@ -174,7 +174,7 @@ client.on("message", async (channel, context, message, self) => {
         }
     }
     // Commands for debugging.
-    let admin_users = ["c0alman", "jayjake"];
+    let admin_users = ["c0alman", "JayJake"];
     // Version debug + avaibility check (Bot admins only)
     if (admin_users.includes(sender_name)) {
         if (message == "!bot debug") {
